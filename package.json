@@ -1,0 +1,12 @@
+{
+  "name": "originlink",
+  "version": "0.0.1",
+  "description": "Add a link to the original problem in the sidebar for referenced problems",
+  "main": "index.ts",
+  "author": "GitHub Copilot",
+  "license": "MIT",
+  "devDependencies": {
+    "hydrooj": "*",
+    "@hydrooj/ui-default": "*"
+  }
+}
