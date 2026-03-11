@@ -1,6 +1,7 @@
 import {
   NamedPage, Notification, addPage, download, i18n, request,
 } from '@hydrooj/ui-default';
+import { dump } from 'js-yaml';
 
 addPage(new NamedPage('problem_detail', () => {
   const btn = document.querySelector<HTMLAnchorElement>('[name="originlink__download-origin"]');
@@ -26,15 +27,17 @@ addPage(new NamedPage('problem_detail', () => {
       const targets: { filename: string; url?: string; content?: string }[] = [];
 
       // problem.yaml
-      const yamlLines = [
-        `pid: ${pdoc.pid || ''}`,
-        `owner: ${pdoc.owner || ''}`,
-        `title: '${String(pdoc.title || '').replace(/'/g, "''")}'`,
-        `tag: [${(pdoc.tag || []).map((t: string) => `'${t.replace(/'/g, "''")}'`).join(', ')}]`,
-        `nSubmit: ${pdoc.nSubmit || 0}`,
-        `nAccept: ${pdoc.nAccept || 0}`,
-      ];
-      targets.push({ filename: `${pid}/problem.yaml`, content: yamlLines.join('\n') + '\n' });
+      targets.push({
+        filename: `${pid}/problem.yaml`,
+        content: dump({
+          pid: pdoc.pid,
+          owner: pdoc.owner,
+          title: pdoc.title,
+          tag: pdoc.tag,
+          nSubmit: pdoc.nSubmit,
+          nAccept: pdoc.nAccept,
+        }),
+      });
 
       // 题目内容
       try {
