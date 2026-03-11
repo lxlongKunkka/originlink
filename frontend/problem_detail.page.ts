@@ -27,7 +27,6 @@ addPage(new NamedPage('problem_detail', () => {
 
       // problem.yaml
       const yamlLines = [
-        `pid: ${pdoc.pid || ''}`,
         `owner: ${pdoc.owner || ''}`,
         `title: '${String(pdoc.title || '').replace(/'/g, "''")}'`,
         `tag: [${(pdoc.tag || []).map((t: string) => `'${t.replace(/'/g, "''")}'`).join(', ')}]`,
