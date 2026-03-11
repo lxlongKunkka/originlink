@@ -27,11 +27,8 @@ addPage(new NamedPage('problem_detail', () => {
 
       // problem.yaml
       const yamlLines = [
-        `owner: ${pdoc.owner || ''}`,
         `title: '${String(pdoc.title || '').replace(/'/g, "''")}'`,
         `tag: [${(pdoc.tag || []).map((t: string) => `'${t.replace(/'/g, "''")}'`).join(', ')}]`,
-        `nSubmit: ${pdoc.nSubmit || 0}`,
-        `nAccept: ${pdoc.nAccept || 0}`,
       ];
       targets.push({ filename: `${pid}/problem.yaml`, content: yamlLines.join('\n') + '\n' });
 
