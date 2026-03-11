@@ -5,9 +5,6 @@
   "main": "index.ts",
   "author": "GitHub Copilot",
   "license": "MIT",
-  "dependencies": {
-    "js-yaml": "*"
-  },
   "devDependencies": {
     "hydrooj": "*",
     "@hydrooj/ui-default": "*"
