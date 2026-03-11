@@ -25,6 +25,17 @@ addPage(new NamedPage('problem_detail', () => {
 
       const targets: { filename: string; url?: string; content?: string }[] = [];
 
+      // problem.yaml
+      const yamlLines = [
+        `pid: ${pdoc.pid || ''}`,
+        `owner: ${pdoc.owner || ''}`,
+        `title: '${String(pdoc.title || '').replace(/'/g, "''")}'`,
+        `tag: [${(pdoc.tag || []).map((t: string) => `'${t.replace(/'/g, "''")}'`).join(', ')}]`,
+        `nSubmit: ${pdoc.nSubmit || 0}`,
+        `nAccept: ${pdoc.nAccept || 0}`,
+      ];
+      targets.push({ filename: `${pid}/problem.yaml`, content: yamlLines.join('\n') + '\n' });
+
       // 题目内容
       try {
         const c = JSON.parse(pdoc.content);
